@@ -1,30 +1,31 @@
-function romanNumerals(value: number) {
-    const numeral = {
-        I: 1,
-        IV: 4,
-        V: 5,
-        IX: 9,
-        X: 10,
-        XL: 40,
-        L: 50,
-        XC: 90,
-        C: 100,
-        CD: 100,
-        D: 500,
-        CM: 900,
-        M:  1000,
-    };
-
-    let result = '';
-    for (let i in numeral) {
-        while (value >= numeral[i]) {
-            result += i
-            value -= numeral[i]
-        }
-    } 
-  return result;
+function romanNumerals(value: number): string {
+  const romanMap: [number, string][] = [
+    [1000, "M"],
+    [900, "CM"],
+    [500, "D"],
+    [400, "CD"],
+    [100, "C"],
+    [90, "XC"],
+    [50, "L"],
+    [40, "XL"],
+    [10, "X"],
+    [9, "IX"],
+    [5, "V"],
+    [4, "IV"],
+    [1, "I"]
+  ];
+  let romanNumeral = "";
+  for (const [num, symbol] of romanMap) {
+    while (value >= num) {
+      romanNumeral += symbol;
+      value -= num;
+    }
+  }
+  return romanNumeral;
 }
 
-console.log(romanNumerals(6));
-console.log(romanNumerals(9));
-console.log(romanNumerals(23));
+console.log(romanNumerals(6))
+console.log(romanNumerals(9))
+console.log(romanNumerals(23))
+console.log(romanNumerals(2021))
+console.log(romanNumerals(1646))
